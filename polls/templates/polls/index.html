@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Polls App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .poll-list {
+            list-style: none;
+        }
+
+        .poll-item {
+            margin: 20px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poll-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .poll-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .poll-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        .poll-item:hover a {
+            color: #667eea;
+        }
+
+        .no-polls {
+            text-align: center;
+            color: #95a5a6;
+            font-style: italic;
+            font-size: 1.2em;
+            padding: 40px;
+        }
+
+        .admin-link {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .admin-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗳️ Polls App</h1>
+            <p>Cast your vote on the latest questions</p>
+        </div>
+        {% if latest_question_list %}
+        <ul class="poll-list">
+            {% for question in latest_question_list %}
+            <li class="poll-item">
+                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="no-polls">No polls are available. <br><small>Add some polls in the admin interface!</small></p>
+        {% endif %}
+    </div>
+    <a href="{% url 'admin:index' %}" class="admin-link">⚙️ Admin</a>
+</body>
+
+</html>

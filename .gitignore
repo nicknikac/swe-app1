@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtualenv
+.venv/
+env/
+venv/
+
+# Django
+staticfiles/
+media/
+
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
+
+# EB
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
