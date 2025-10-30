@@ -63,7 +63,7 @@ jobs:
     - name: Create deployment package
       run: |
         sudo apt-get install zip -y
-        zip -r swe-app.zip . -x "*.git*" -x "__pycache__/*" -x "*.venv*" -x "*.env*" -x "*.coverage*" -x "coverage.xml" -x "htmlcov/*"
+        zip -r swe-app.zip . -x "*.git*" -x "__pycache__/*" -x "*.venv*" -x "*.env*" -x "*.coverage*" -x "coverage.xml" -x "htmlcov/*" -x "*.DS_Store"
 
     - name: Deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v20
