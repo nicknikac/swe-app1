@@ -62,8 +62,24 @@ jobs:
 
     - name: Create deployment package
       run: |
-        sudo apt-get install zip -y
-        zip -r swe-app.zip . -x "*.git*" -x "__pycache__/*" -x "*.venv*" -x "*.env*" -x "*.coverage*" -x "coverage.xml" -x "htmlcov/*" -x "*.DS_Store"
+        sudo apt-get update -y
+        sudo apt-get install -y zip
+        rm -f swe-app.zip
+        zip -r swe-app.zip \
+          manage.py \
+          Procfile \
+          requirements.txt \
+          runtime.txt \
+          .ebextensions \
+          mysite \
+          polls \
+          static \
+          --exclude "**/__pycache__/*" \
+          --exclude ".git/*" \
+          --exclude ".github/*" \
+          --exclude "*.pytest_cache/*" \
+          --exclude "*.coverage*" \
+          --exclude "coverage.xml"
 
     - name: Deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v20
