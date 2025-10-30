@@ -62,7 +62,7 @@ jobs:
 
     - name: Create deployment package
       run: |
-        zip -r swe1-app.zip . \
+        zip -r swe-app.zip . \
           -x "*.git*" \
           -x ".venv/*" \
           -x "venv/*" \
@@ -81,8 +81,8 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: swe-app1
-        environment_name: swe1-app-env
-        version_label: ${{ github.sha }}
+        environment_name: Swe-app1-env
+        version_label: ${{ github.run_number }}
         region: us-east-2
-        deployment_package: swe1-app.zip
+        deployment_package: swe-app.zip
         wait_for_deployment: true

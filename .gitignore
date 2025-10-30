@@ -9,7 +9,8 @@ coverage.xml
 htmlcov/
 
 # Deployment
-swe1-app.zip
+*.zip
+!swe-app.zip
 
 # Virtualenv
 .venv/
